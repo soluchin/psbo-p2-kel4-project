@@ -78,7 +78,12 @@ const Header = () => {
           <Link href="/">
             <a className={classes.menuItem}>Find Partner</a>
           </Link>
-          <Button className={classes.button} size="large" variant="contained">
+          <Button
+            className={classes.button}
+            size="large"
+            variant="contained"
+            href="/signin"
+          >
             <Typography variant="h6" className={classes.txtButton}>
               Login
             </Typography>
