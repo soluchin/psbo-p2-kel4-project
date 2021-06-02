@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     padding: "2rem",
+    textIndent: "-8rem",
   },
   title: {
     marginLeft: "10em",
