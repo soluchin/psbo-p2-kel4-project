@@ -11,10 +11,16 @@ generator client {
 }
 
 model User {
-  // Attributes 
+  // Attributes
   id        String @id @default(cuid())
   firstName String
   lastName  String
   email     String
   password  String
+}
+
+model Admin {
+  id       String @id @default(cuid(4))
+  userName String
+  password String
 }
