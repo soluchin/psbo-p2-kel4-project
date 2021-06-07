@@ -12,7 +12,7 @@ generator client {
 
 model User {
   // Attributes
-  id        String @id @default(cuid())
+  id        Int @id @default(autoincrement())
   firstName String
   lastName  String
   email     String
@@ -20,7 +20,7 @@ model User {
 }
 
 model Admin {
-  id       String @id @default(cuid(4))
+  id       Int @id @default(autoincrement())
   userName String
   password String
 }
