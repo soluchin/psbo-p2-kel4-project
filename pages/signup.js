@@ -12,6 +12,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { string } from "yup/lib/locale";
 
 function Copyright() {
   return (
@@ -63,6 +66,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const validationSchema = yup.object({
+    firstName: yup.string().required("FirstName required"),
+    lastName: yup.string().required("LastName required"),
+    email: yup
+      .string()
+      .email("Enter a valid email")
+      .required("Enter a valid email"),
+    password: yup.string().required("Password required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleRegis,
+  });
 
   return (
     <div className={classes.root}>
@@ -77,7 +100,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -85,6 +108,8 @@ export default function SignUp() {
                   name="firstName"
                   variant="outlined"
                   required
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -100,6 +125,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +138,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,6 +152,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
