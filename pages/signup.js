@@ -76,6 +76,10 @@ export default function SignUp() {
     password: yup.string().required("Password required"),
   });
 
+  const handleRegis = () => {
+    return console.log("fungsi jalan");
+  };
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -154,14 +158,6 @@ export default function SignUp() {
                   autoComplete="current-password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
