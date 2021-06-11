@@ -3,13 +3,12 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function addUserHandler(req, res) {
-  // const { userName, password } = req.body
 
   if (req.method === "POST") {
     // Process a POST request
     try {
       const { userName, password } = req.body
-      const result = await prisma.ddmin.create({
+      const result = await prisma.admin.create({
         data: {
           userName,
           password
@@ -21,7 +20,7 @@ export default async function addUserHandler(req, res) {
         result
       });
     } catch (err) {
-      res.status(400).json({ message: 'Something went wrong' });
+      res.status(400).json({ message: 'Something went wrong', detailMessage: err.message });
     }
   } else {
     // Handle any other HTTP method
