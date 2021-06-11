@@ -3,8 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import { useRouter } from "next/router";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -15,6 +14,7 @@ import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { string } from "yup/lib/locale";
+import { useState } from "react";
 
 function Copyright() {
   return (
@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const router = useRouter();
   const classes = useStyles();
   const validationSchema = yup.object({
     firstName: yup.string().required("FirstName required"),
@@ -76,8 +77,20 @@ export default function SignUp() {
     password: yup.string().required("Password required"),
   });
 
-  const handleRegis = () => {
-    return console.log("fungsi jalan");
+  const handleRegis = async ({ firstName, lastName, email, password }) => {
+    await fetch("/api/regist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      }),
+    });
+    router.push("/signin");
   };
 
   const formik = useFormik({
