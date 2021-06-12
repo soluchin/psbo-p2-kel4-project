@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
 function Copyright() {
   return (
@@ -64,6 +66,27 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .email("Enter a valid email")
+      .required("Enter a valid email"),
+    password: yup.string().required("Password required"),
+  });
+
+  const handleLogin = () => {
+    return console.log("Login success");
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleLogin,
+  });
+
   return (
     <div className={classes.root}>
       <img src="/topleft.svg" className={classes.icontop} />
@@ -77,7 +100,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={formik.handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -88,6 +111,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={formik.values.email}
+              onChange={formik.handleChange}
             />
             <TextField
               variant="outlined"
@@ -99,6 +124,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
