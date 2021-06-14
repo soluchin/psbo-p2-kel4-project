@@ -1,10 +1,12 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, Box } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Link from "next/link";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import useUser from "../hooks/useUser";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -78,7 +80,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Navbar() {
+  const { currentUser, setCurrentUser } = useUser();
+  const router = useRouter();
   const classes = useStyles();
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    router.reload();
+  };
+
   return (
     <>
       <AppBar position="static" className={classes.appbar}>
@@ -111,16 +121,41 @@ export default function Navbar() {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Button
-            className={classes.button}
-            size="large"
-            variant="contained"
-            href="/signin"
-          >
-            <Typography variant="h6" className={classes.txtButton}>
-              Login
-            </Typography>
-          </Button>
+          {currentUser !== null ? (
+            <Box display="flex" flexDirection="row">
+              <Button
+                className={classes.button}
+                size="large"
+                variant="contained"
+                href="/"
+              >
+                <Typography variant="h6" className={classes.txtButton}>
+                  Edit Profil
+                </Typography>
+              </Button>
+              <Button
+                className={classes.button}
+                size="large"
+                variant="contained"
+                onClick={handleLogout}
+              >
+                <Typography variant="h6" className={classes.txtButton}>
+                  Logout
+                </Typography>
+              </Button>
+            </Box>
+          ) : (
+            <Button
+              className={classes.button}
+              size="large"
+              variant="contained"
+              href="/signin"
+            >
+              <Typography variant="h6" className={classes.txtButton}>
+                Login
+              </Typography>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </>

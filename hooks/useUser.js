@@ -7,6 +7,7 @@ const useUser = () => {
     setCurrentUser(data);
   }, []);
   return {
+    setCurrentUser,
     currentUser,
   };
 };

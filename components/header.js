@@ -4,9 +4,12 @@ import {
   Toolbar,
   Typography,
   Button,
+  Avatar,
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Link from "next/link";
+import useUser from "../hooks/useUser";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -55,10 +58,22 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16pt",
     color: "#656464",
   },
+  avatar: {
+    marginLeft: "auto",
+    marginRight: "20px",
+    textColor: "#0000",
+  },
 }));
 
 const Header = () => {
+  const { currentUser, setCurrentUser } = useUser();
   const classes = useStyles();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    router.reload();
+  };
   return (
     <>
       <AppBar position="static" className={classes.appbar}>
@@ -78,16 +93,29 @@ const Header = () => {
           <Link href="/findpartner">
             <a className={classes.menuItem}>Find Partner</a>
           </Link>
-          <Button
-            className={classes.button}
-            size="large"
-            variant="contained"
-            href="/signin"
-          >
-            <Typography variant="h6" className={classes.txtButton}>
-              Login
-            </Typography>
-          </Button>
+          {currentUser !== null ? (
+            <Button
+              className={classes.button}
+              size="large"
+              variant="contained"
+              onClick={handleLogout}
+            >
+              <Typography variant="h6" className={classes.txtButton}>
+                Logout
+              </Typography>
+            </Button>
+          ) : (
+            <Button
+              className={classes.button}
+              size="large"
+              variant="contained"
+              href="/signin"
+            >
+              <Typography variant="h6" className={classes.txtButton}>
+                Login
+              </Typography>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <div className={classes.headerContent} id="what-is">
