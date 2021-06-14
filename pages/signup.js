@@ -114,9 +114,9 @@ export default function SignUp() {
     onSubmit: handleRegis,
   });
 
-  if (currentUser !== null) {
-    return <h1>Private Page</h1>;
-  }
+  // if (currentUser !== null) {
+  //   return <h1>Private Page</h1>;
+  // }
 
   return (
     <div className={classes.root}>
