@@ -1,5 +1,14 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Menu,
+  MenuItem,
+  Avatar,
+} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Link from "next/link";
 import InputBase from "@material-ui/core/InputBase";
@@ -7,6 +16,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import useUser from "../hooks/useUser";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -81,12 +91,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const { currentUser, setCurrentUser } = useUser();
+  const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
   const classes = useStyles();
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    router.reload();
+    router.push("/");
+  };
+
+  const handleEdit = () => {
+    router.push("/editprofil");
   };
 
   return (
@@ -122,27 +145,26 @@ export default function Navbar() {
             />
           </div>
           {currentUser !== null ? (
-            <Box display="flex" flexDirection="row">
+            <Box marginLeft="auto" marginRight="20px">
               <Button
-                className={classes.button}
-                size="large"
-                variant="contained"
-                href="/"
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+                size="medium"
               >
-                <Typography variant="h6" className={classes.txtButton}>
-                  Edit Profil
-                </Typography>
+                <Avatar src="https://source.unsplash.com/random" />
               </Button>
-              <Button
-                className={classes.button}
-                size="large"
-                variant="contained"
-                onClick={handleLogout}
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
               >
-                <Typography variant="h6" className={classes.txtButton}>
-                  Logout
-                </Typography>
-              </Button>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleEdit}>Edit Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
             </Box>
           ) : (
             <Button

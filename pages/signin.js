@@ -109,10 +109,6 @@ export default function SignIn() {
     onSubmit: handleLogin,
   });
 
-  if (currentUser) {
-    return <h1> Anda sudah login </h1>
-  }
-
   return (
     <div className={classes.root}>
       <img src="/topleft.svg" className={classes.icontop} />
@@ -168,8 +164,8 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
+                <Link href="/" variant="body2">
+                  Back to home
                 </Link>
               </Grid>
               <Grid item>

@@ -5,11 +5,15 @@ import {
   Typography,
   Button,
   Avatar,
+  Menu,
+  MenuItem,
+  Box,
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Link from "next/link";
 import useUser from "../hooks/useUser";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -66,14 +70,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const { currentUser, setCurrentUser } = useUser();
   const classes = useStyles();
   const router = useRouter();
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
-    router.reload();
+    router.push("/");
   };
+
+  const handleEdit = () => {
+    router.push("/editprofil");
+  };
+
   return (
     <>
       <AppBar position="static" className={classes.appbar}>
@@ -94,16 +112,27 @@ const Header = () => {
             <a className={classes.menuItem}>Find Partner</a>
           </Link>
           {currentUser !== null ? (
-            <Button
-              className={classes.button}
-              size="large"
-              variant="contained"
-              onClick={handleLogout}
-            >
-              <Typography variant="h6" className={classes.txtButton}>
-                Logout
-              </Typography>
-            </Button>
+            <Box marginLeft="auto" marginRight="20px">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+                size="medium"
+              >
+                <Avatar src="https://source.unsplash.com/random" />
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleEdit}>Edit Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </Box>
           ) : (
             <Button
               className={classes.button}
