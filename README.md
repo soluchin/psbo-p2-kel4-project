@@ -1,3 +1,9 @@
+# IPB Ta'aruf
+Tugas akhir PSBO - Praktikum 2 - Kelompok 4
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pada dasarnya setiap hal pasti membutuhkan pasangan, begitu juga manusia. Di waktu yang tepat, manusia membutuhkan pasangan yang dapat saling mendukung satu sama lain dimulai ketika janji suci pernikahan diucapkan hingga akhir hayat. Tentu saja proses untuk dapat mengucapkan janji suci tersebut harus melalui proses yang baik dan sesuai dengan anjuran agama. Agama islam mengajarkan **ta'aruf** sebagai salah satu proses yang baik. **IPB** merupakan salah satu jajaran kampus besar yang juga dikenal dengan lingkungan islaminya. Dengan label tersebut ta’aruf dapat menjadi cara yang tepat bagi lulusan muda IPB untuk mencari pasangan. Memiliki kesamaan almamater berarti juga mengalami banyak kejadian yang familiar, memiliki kesamaan mungkin dapat mempermudah proses mengenal lebih jauh yang tentunya dengan niat menikah.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPB Ta'aruf** dapat membantu mencari pasangan yang tentunya dalam keadaan siap untuk melanjutkan ke tahap pernikahan. pengguna dapat mencari pasangan yang sesuai dengan kriteria pengguna melalui proposal pernikahan, CV dan profile pasangan. Dengan bantuan pihak ke-3, pasangan akan dipertemukan secara virtual setelah adanya konfirmasi dari kedua belah pihak.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
