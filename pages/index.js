@@ -2,6 +2,7 @@ import Header from "../components/header";
 import { CssBaseline, makeStyles, Typography } from "@material-ui/core";
 import HowItWorks from "../components/howItWorks";
 import Footer from "../components/footer";
+import Manfaat from "../components/manfaat";
 
 const useStyles = makeStyles((theme) => ({
   head: {
@@ -23,6 +24,7 @@ export default function Home() {
       </div>
       <br />
       <HowItWorks />
+      <Manfaat />
       <Footer />
     </>
   );

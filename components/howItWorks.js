@@ -31,7 +31,7 @@ const HowItWorks = () => {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.head2}>
+      <div className={classes.head2} id="howto">
         <Typography variant="h3" align="center" className={classes.txtHow}>
           How It Works?
         </Typography>
