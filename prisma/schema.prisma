@@ -12,15 +12,35 @@ generator client {
 
 model User {
   // Attributes
-  id        Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   firstName String
   lastName  String
   email     String
   password  String
+  // reference
+  profile   Profile?
 }
 
+model Profile {
+  // Attributes
+  id                 Int    @id @default(autoincrement())
+  deskripsiDiri      String
+  pekerjaan          String
+  suku               String
+  pendidikanTerakhir String
+  domisili           String
+  statusPernikahan   String
+  Hobi               String
+  karakterPositif    String
+  karakterNegatif    String
+  // reference
+  user               User   @relation(fields: [profileId], references: [id])
+  profileId          Int // relation scalar field (used in the `@relation` attribute above)
+}
+
+// Dummy
 model Admin {
-  id       Int @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   userName String
   password String
 }
