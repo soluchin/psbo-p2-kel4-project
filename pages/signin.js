@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import useUser from "../hooks/useUser";
+import { useRouter } from "next/router";
 
 function Copyright() {
   return (
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const { currentUser } = useUser();
   const classes = useStyles();
+  const router = useRouter();
 
   const validationSchema = yup.object({
     email: yup
@@ -106,6 +108,10 @@ export default function SignIn() {
     validationSchema: validationSchema,
     onSubmit: handleLogin,
   });
+
+  if (currentUser) {
+    return <h1> Anda sudah login </h1>
+  }
 
   return (
     <div className={classes.root}>
