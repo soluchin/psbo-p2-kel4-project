@@ -8,13 +8,14 @@ import {
   Card,
   CardMedia,
   CardContent,
-  CardAction,
+  CardActions,
   Button,
   Avatar,
+  CardActionArea,
 } from "@material-ui/core";
-import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
-import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
+// import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
+// import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
+// import MenuBookIcon from "@material-ui/icons/MenuBook";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -31,58 +32,43 @@ const useStyles = makeStyles((theme) => ({
   cardcontent: {
     marginLeft: "8px",
   },
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
 }));
 
 export default function Kartu() {
   const classes = useStyles();
   return (
     <>
-      <Card className={classes.card}>
-        <Box display="flex" flexDirection="row">
-          <Box>
-            <Avatar className={classes.avatar} src="/pp.jpg" />
-          </Box>
-          <Box display="flex" flexDirection="column">
-            <CardContent>
-              <Typography variant="subtitle1" gutterBottom>
-                Jung Bareum - 25th
-              </Typography>
-              <Box display="flex" flexDirection="row">
-                <WorkOutlineIcon />
-                <Typography
-                  gutterBottom
-                  variant="subtitle2"
-                  className={classes.cardcontent}
-                >
-                  Programmer
-                </Typography>
-              </Box>
-              <Box display="flex" flexDirection="row">
-                <FiberManualRecordRoundedIcon />
-                <Typography gutterBottom variant="subtitle2">
-                  Belum pernah menikah
-                </Typography>
-              </Box>
-              <Box display="flex" flexDirection="row">
-                <MenuBookIcon />
-                <Typography gutterBottom variant="subtitle2">
-                  Aktuaria - FMIPA
-                </Typography>
-              </Box>
-            </CardContent>
-            <CardAction>
-              <Box display="flex">
-                <Button
-                  size="small"
-                  variant="contained"
-                  className={classes.btn}
-                >
-                  See more
-                </Button>
-              </Box>
-            </CardAction>
-          </Box>
-        </Box>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image="/pp.jpg"
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Lizard
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
       </Card>
     </>
   );

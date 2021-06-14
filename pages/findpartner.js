@@ -56,7 +56,9 @@ export default function findpartner() {
             </Typography>
           </Box>
           <Grid container spacing={4} className={classes.gridContainer}>
-            <Grid item xs={12} sm={6}></Grid>
+            <Grid item xs={12} sm={6}>
+              <Kartu />
+            </Grid>
           </Grid>
         </Container>
       </Box>

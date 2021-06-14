@@ -13,8 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { string } from "yup/lib/locale";
 import { useState } from "react";
+import useUser from "../hooks/useUser";
 
 function Copyright() {
   return (
@@ -65,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const { currentUser } = useUser();
+  console.log(currentUser);
   const router = useRouter();
   const classes = useStyles();
   const validationSchema = yup.object({
@@ -78,7 +80,7 @@ export default function SignUp() {
   });
 
   const handleRegis = async ({ firstName, lastName, email, password }) => {
-    await fetch("/api/regist", {
+    const response = await fetch("/api/regist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +91,15 @@ export default function SignUp() {
         email: email,
         password: password,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        localStorage.setItem("currentUser", JSON.stringify(data.result));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     router.push("/signin");
   };
 
@@ -103,6 +113,10 @@ export default function SignUp() {
     validationSchema: validationSchema,
     onSubmit: handleRegis,
   });
+
+  if (currentUser !== null) {
+    return <h1>Private Page</h1>;
+  }
 
   return (
     <div className={classes.root}>

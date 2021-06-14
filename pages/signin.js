@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import useUser from "../hooks/useUser";
 
 function Copyright() {
   return (
@@ -64,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const { currentUser } = useUser();
   const classes = useStyles();
 
   const validationSchema = yup.object({
@@ -74,8 +76,26 @@ export default function SignIn() {
     password: yup.string().required("Password required"),
   });
 
-  const handleLogin = () => {
-    return console.log("Login success");
+  const handleLogin = async ({ email, password }) => {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        localStorage.setItem("currentUser", JSON.stringify(data.result));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    router.push("/");
   };
 
   const formik = useFormik({
