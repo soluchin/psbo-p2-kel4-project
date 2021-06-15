@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function registHandler(req, res) {
+export default async function editProfileHandler(req, res) {
   if (req.method === "POST") {
     // Process a POST request
     try {
@@ -48,6 +48,7 @@ export default async function registHandler(req, res) {
     // Handle any other HTTP method
     return res.status(405).json({
       message: "Method not allowed-SALAH WOY",
+      detailMessage: err.message,
     });
   }
 }
