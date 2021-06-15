@@ -30,7 +30,7 @@ model Profile {
   pendidikanTerakhir String
   domisili           String
   statusPernikahan   String
-  Hobi               String
+  hobi               String
   karakterPositif    String
   karakterNegatif    String
   // reference
