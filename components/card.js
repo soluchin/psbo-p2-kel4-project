@@ -13,6 +13,7 @@ import {
   Avatar,
   CardActionArea,
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 // import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 // import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
 // import MenuBookIcon from "@material-ui/icons/MenuBook";
@@ -41,36 +42,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Kartu() {
+export default function Kartu({ dataContent, ...props }) {
+  const { firstName, lastName, email } = dataContent;
   const classes = useStyles();
   return (
     <>
-      <Card className={classes.root}>
+      <Card className={classes.root} {...props}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="/pp.jpg"
-            title="Contemplative Reptile"
+            image="https://source.unsplash.com/random"
+            title="Random Image"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {firstName}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              my last name is {lastName} contact me at {email}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+            Detail
           </Button>
         </CardActions>
       </Card>
     </>
   );
 }
+
+Kartu.propTypes = {
+  dataContent: PropTypes.object,
+};

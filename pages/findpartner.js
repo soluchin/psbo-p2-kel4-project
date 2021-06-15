@@ -2,22 +2,12 @@ import React from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Box,
-  Typography,
-  Grid,
-  Container,
-  Card,
-  CardMedia,
-  CardContent,
-  CardAction,
-  Button,
-  Avatar,
-} from "@material-ui/core";
+import { Box, Typography, Grid, Container } from "@material-ui/core";
 import Kartu from "../components/card";
-import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
-import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
+import { PrismaClient } from "@prisma/client";
+import PropTypes from "prop-types";
+
+const prisma = new PrismaClient();
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +30,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function findpartner() {
+export async function getStaticProps() {
+  const datas = await prisma.user.findMany();
+  if (!datas) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      datas,
+    },
+  };
+}
+
+export default function findpartner({ datas }) {
   const classes = useStyles();
   return (
     <>
@@ -56,9 +60,11 @@ export default function findpartner() {
             </Typography>
           </Box>
           <Grid container spacing={4} className={classes.gridContainer}>
-            <Grid item xs={12} sm={6}>
-              <Kartu />
-            </Grid>
+            {datas.map((data) => (
+              <Grid key={data.id} item xs={6} sm={3}>
+                <Kartu dataContent={data} />
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
@@ -66,3 +72,7 @@ export default function findpartner() {
     </>
   );
 }
+
+findpartner.propTypes = {
+  datas: PropTypes.array,
+};
