@@ -1,6 +1,8 @@
 # IPB Ta'aruf
 Tugas akhir PSBO - Praktikum 2 - Kelompok 4
 
+
+
 ## Description
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pada dasarnya setiap hal pasti membutuhkan pasangan, begitu juga manusia. Di waktu yang tepat, manusia membutuhkan pasangan yang dapat saling mendukung satu sama lain dimulai ketika janji suci pernikahan diucapkan hingga akhir hayat. Tentu saja proses untuk dapat mengucapkan janji suci tersebut harus melalui proses yang baik dan sesuai dengan anjuran agama. Agama islam mengajarkan **ta'aruf** sebagai salah satu proses yang baik. **IPB** merupakan salah satu jajaran kampus besar yang juga dikenal dengan lingkungan islaminya. Dengan label tersebut ta’aruf dapat menjadi cara yang tepat bagi lulusan muda IPB untuk mencari pasangan. Memiliki kesamaan almamater berarti juga mengalami banyak kejadian yang familiar, memiliki kesamaan mungkin dapat mempermudah proses mengenal lebih jauh yang tentunya dengan niat menikah.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPB Ta'aruf** dapat membantu mencari pasangan yang tentunya dalam keadaan siap untuk melanjutkan ke tahap pernikahan. pengguna dapat mencari pasangan yang sesuai dengan kriteria pengguna melalui proposal pernikahan, CV dan profile pasangan. Dengan bantuan pihak ke-3, pasangan akan dipertemukan secara virtual setelah adanya konfirmasi dari kedua belah pihak.
@@ -44,7 +46,7 @@ berikut ini adalah lingkungan yang kami gunakan dalam pengembangan aplikasi.
 ### Activity Diagram
 ![Activity Diagram](https://drive.google.com/file/d/1OXCZ0JrZpTB-CgozRHefrkpCZ_NbuG5q/view?usp=sharing)
 ### Class Diagram
-![Class Diagram](https://drive.google.com/file/d/1apampnApVafHh_kEJbYueaKSleyV2Q5H/view?usp=sharing)
+![Class Diagram](https://asset.kompas.com/crops/SU2rIFfQk9bmpllTs4f-kQDaRsU=/192x128:1728x1152/750x500/data/photo/2021/02/04/601bce0638cf2.jpg)
 ### Entity Relationship Diagram
 
 ### Arsitektur System
